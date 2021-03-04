@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <style type="text/css">
+    a:hover {
+        text-decoration: none;
+    }
+
+    @media only screen and (max-width: 800px) {
+        .img1tag {
+
+            margin-top: 130px;
+        }
+
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid ">
+            <nav class="navbar navbar-expand-lg navbar-light  ">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'convertors/CGLOGO.png'  %}" class="rounded-circle" height="50" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="{% url 'index' %}">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="#" data-toggle="modal" data-target="#myModal">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="{% url 'convert'  %}">Convertors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" href="{% url 'generators:gensis'  %}">Generators</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="1">
+            <title>first-part</title>
+            <div class="container p-5">
+                <div class="row align-items-center">
+                    <div class="col-md-6  p-2 pr-5 ">
+                        <div class="d-flex">
+                            <h5 class="pr-3">About</h5><span class="text-warning">________________</span>
+                        </div>
+                        <h2 class="">Convertors and Generators</h2>
+                        <p>CG teams helps user to make there code faster and effective.We provide different feature into two main categories Convertors and Generators.</p>
+                        <div class="d-flex ">
+                            <button class="btn btn-outline-warning rounded-pill p-2 px-3" data-toggle="modal" data-target="#myModal">Know More</button>
+                            <!----------------------------- models part------------------------------------------------------------------->
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">About CG TEAMS</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            CG teams helps user to make there code faster and effective.We provide different feature into two main categories Convertors and Generators.
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!---------------------------------------------- end of model ---------------------------------------------------->
+                        </div>
+                    </div>
+                    <div class="col-md-6 img1tag">
+                        <img style="margin-top: -125px" src="{% static 'convertors/img1.PNG' %}" class="img-fluid " alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-light">
+            <div class="container py-5">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-sm-6">
+                        <img src="{% static 'convertors/convertorsimg1.png' %}" class="img-fluid " alt="">
+                    </div>
+                    <div class="col-sm-6">
+                        <h3 class="display-4 font-weight-bold">Convertors</h3>
+                        <p>CG teams helps user to make there code faster and effective.We provide different feature into two main categories Convertors and Generators.</p>
+                        <div class="d-flex ">
+                            <a href="{% url 'convert'  %}"><button class="btn btn-outline-warning rounded-pill p-2 px-3">Click To Convert</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="">
+            <div class="container py-5">
+                <div class="row justify-content-center align-items-center pt-5">
+                    <div class="col-sm-6">
+                        <h3 class="display-4 font-weight-bold">Generators</h3>
+                        <p>CG teams helps user to make there code faster and effective.We provide different feature into two main categories Convertors and Generators.</p>
+                        <div class="d-flex ">
+                            <a href="{% url 'generators:gensis'  %}"><button class="btn btn-outline-warning rounded-pill p-2 px-3">Click To Generate</button></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="{% static 'convertors/generatorimg.png' %}" class="img-fluid " alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="d-flex py-5">
+                    <h5 class="pr-3">Contact</h5><span class="text-warning">_____________</span>
+                </div>
+                <h3 class="p-3 font-weight-bold">Work Enquiry</h3>
+                <h3>Wanna talk about your next big project </h3>
+            </div>
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputname">Full Name</label>
+                                <input type="text" class="form-control" id="exampleInputname" aria-describedby="nameHelp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="project">Project Type</label>
+                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                    <option selected>Select all the apply</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-dark rounded-pill px-5 p-2">Submit</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="ControlTextarea1">Qucik Message</label>
+                            <textarea class="form-control" id="ControlTextarea1" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container muted">
+            <p>&copy;2021 <span class="font-weight-bold text-danger">CG Teams</span> </p>
+        </div>
+    </footer>
+</body>
+
+</html>

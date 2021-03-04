@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'convertors/style.css'  %}">
+</head>
+
+<body>
+    <header>
+        <div class="container ">
+            <nav class="navbar navbar-expand-lg navbar-light  ">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'convertors/CGLOGO.png'  %}" class="rounded-circle" height="50" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-5 ">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="{% url 'index' %}">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="{% url 'convert'  %}">Convertors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="{% url 'generators:gensis'  %}">Generators</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section id="app">
+        
+        <div class="container py-5 my-3 shadow" >
+            <div class="row">
+                <div class="col-sm"><i class="shadow p-3 font-weight-bold" id="bol" @dblclick="wrong()" @click="addbold()">Bold</i></div>
+                <div class="col-sm"><i class="shadow p-3  font-weight-bold" id="ita" @dblclick="wrong()" @click="additalic()">Italic</i></div>
+                <div class="col-sm"><i class="shadow p-3  font-weight-bold" id="uli" @dblclick="wrong()" @click="adduline()">Uline</i></div>
+                <div class="col-sm"><i class="shadow p-3  font-weight-bold" id="upp" @click="addupper()">Upper</i></div>
+                <div class="col-sm"><i class="shadow p-3  font-weight-bold" id="low" @click="addlower()">Lower</i></div>
+                <div class="col-sm"><i class="shadow p-3  font-weight-bold " id="hea" @click="addheads()">HTag</i></div>
+                <div class="col-sm"><i class="shadow p-3  font-weight-bold " id="hea" @click="addp()">PTag</i></div>
+            </div>
+            <div class="row align-items-center jusitfy-content-center">
+                <div class="col-sm-6 py-5">
+                    <div class="form-group">
+                        <textarea class="form-control" v-on:input="changetitle" placeholder="Type to Convert" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div>
+                        <p class="text-dark alert-danger text-center p-2  "> ${ p1 } ${ title } ${ p2 } </p>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-danger rounded-pill p-2 px-5 font-weight-bold float-right" onClick="window.location.reload();">Reset Button</button>
+        </div>
+    </section>
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        delimiters: ['${', '}'],
+        data: {
+            p1: "<p>",
+            p2: '</p>',
+            title: 'Hello World',
+           
+        },
+        methods: {
+            changetitle: function(event) {
+                this.title = event.target.value;
+            },
+           
+            addbold: function() {
+                var element = document.getElementById("bol");
+                element.classList.add("not-allowed");
+
+                this.p1 = this.p1.replace("<p>", "<p><b>");
+                this.p1 = this.p1.replace("<p style='text-transform: uppercase';>", "<p style='text-transform: uppercase';><b>");
+                this.p1 = this.p1.replace("<p style='text-transform: lowercase';>", "<p style='text-transform: uppercase';><b>");
+                this.p2 = this.p2.replace("</p>", "</b></p>");
+                //  Head tags bold
+
+                this.p1 = this.p1.replace("<h1>", "<h1><b>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: uppercase';>", "<h1 style='text-transform: uppercase';><b>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: lowercase';>", "<h1 style='text-transform: uppercase';><b>");
+                this.p2 = this.p2.replace("</h1>", "</b></h1>");
+            },
+            additalic: function() {
+                var element = document.getElementById("ita");
+                element.classList.add("not-allowed");
+                this.p1 = this.p1.replace("<p>", "<p><i>");
+                this.p1 = this.p1.replace("<p style='text-transform: uppercase';>", "<p style='text-transform: uppercase';><i>");
+                this.p1 = this.p1.replace("<p style='text-transform: lowercase';>", "<p style='text-transform: uppercase';><i>");
+                this.p2 = this.p2.replace("</p>", "</i></p>");
+
+                // Head tags italic
+                this.p1 = this.p1.replace("<h1>", "<h1><i>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: uppercase';>", "<h1 style='text-transform: uppercase';><i>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: lowercase';>", "<h1 style='text-transform: uppercase';><i>");
+                this.p2 = this.p2.replace("</h1>", "</i></h1>");
+            },
+            adduline: function() {
+                var element = document.getElementById("uli");
+                element.classList.add("not-allowed");
+                this.p1 = this.p1.replace("<p>", "<p><u>");
+                this.p1 = this.p1.replace("<p style='text-transform: uppercase';>", "<p style='text-transform: uppercase';><u>");
+                this.p1 = this.p1.replace("<p style='text-transform: lowercase';>", "<p style='text-transform: uppercase';><u>");
+                this.p2 = this.p2.replace("</p>", "</u></p>");
+
+                // Head Tags underline
+                this.p1 = this.p1.replace("<h1>", "<h1><u>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: uppercase';>", "<h1 style='text-transform: uppercase';><u>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: lowercase';>", "<h1 style='text-transform: uppercase';><u>");
+                this.p2 = this.p2.replace("</h1>", "</u></h1>");
+
+
+            },
+            addupper: function() {
+
+                this.p1 = this.p1.replace("<p>", "<p style='text-transform: uppercase';>");
+                this.p1 = this.p1.replace("<p style='text-transform: lowercase';>", "<p style='text-transform: uppercase';>");
+                this.p2 = this.p2.replace("</p>", "</p>");
+
+                // head tags uppercase
+                this.p1 = this.p1.replace("<h1>", "<h1 style='text-transform: uppercase';>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: lowercase';>", "<h1 style='text-transform: uppercase';>");
+                this.p2 = this.p2.replace("</h1>", "</h1>");
+
+            },
+            addlower: function() {
+
+                this.p1 = this.p1.replace("<p style='text-transform: uppercase';>", "<p style='text-transform: lowercase';>");
+                this.p1 = this.p1.replace("<p>", "<p style='text-transform: lowercase';>");
+                this.p2 = this.p2.replace("</p>", "</p>");
+
+                // head tags lower case
+
+                this.p1 = this.p1.replace("<h1 style='text-transform: uppercase';>", "<h1 style='text-transform: lowercase';>");
+                this.p1 = this.p1.replace("<h1>", "<h1 style='text-transform: lowercase';>");
+                this.p2 = this.p2.replace("</h1>", "</h1>");
+
+
+            },
+            addheads: function() {
+                this.p1 = this.p1.replace("<p>", "<h1>");
+                this.p1 = this.p1.replace("<p style='text-transform: uppercase';>", "<h1 style='text-transform: uppercase';>");
+                this.p1 = this.p1.replace("<p style='text-transform: lowercase';>", "<h1 style='text-transform: uppercase';>");
+                this.p2 = this.p2.replace("</p>", "</h1>");
+            },
+            addp: function() {
+                this.p1 = this.p1.replace("<h1>", "<p>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: uppercase';>", "<p style='text-transform: uppercase';>");
+                this.p1 = this.p1.replace("<h1 style='text-transform: lowercase';>", "<p style='text-transform: uppercase';>");
+                this.p2 = this.p2.replace("</h1>", "</p>");
+            },
+            wrong: function() {
+
+                alert("Don't Use Double tap on a single button || U Already Us This Tag ");
+                alert(" Now Try To Refresh This Page  ");
+                window.parent.location = window.parent.location.href;
+
+            },
+            reloadPage: function() {
+
+                window.parent.location = window.parent.location.href;
+            },
+        }
+    });
+    
+    </script>
+</body>
+
+</html>

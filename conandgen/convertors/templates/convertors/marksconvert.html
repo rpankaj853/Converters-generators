@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+</head>
+
+<body>
+    <header>
+        <div class="container ">
+            <nav class="navbar navbar-expand-lg navbar-light  ">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'convertors/CGLOGO.png'  %}" class="rounded-circle" height="50" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-5 ">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="{% url 'index' %}">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="{% url 'convert'  %}">Convertors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold px-4" href="{% url 'generators:gensis'  %}">Generators</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section>
+    	<div class="text-center text-italic text-monospace font-weight-bold"><h3>Percentage Calculator </h3></div>
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input class="form-control" type="number" placeholder="Total Marks" id="tmarks">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input class="form-control" type="number" placeholder="Out of" id="omarks">
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="container">
+                    <h2 class=" alert alert-primary text-danger py-2 text-center font-weight-bold text-monospace text-italic" id="res"> </h2>
+                </div>
+                <div class="ml-auto">
+                    <button onclick="changevaluepercentage()" class="btn btn-warning  rounded-pill mt-3 py-2 px-5 ">Convert </button>
+                </div>
+            </div>
+            <hr class="py-4">
+            <div class="text-center text-italic text-monospace font-weight-bold"><h3>Percentage to other  Conversion </h3></div>
+            <div class="row pt-3">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <input class="form-control py-2" type="number" placeholder="Enter Your Percentage " id="permarks">
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+
+            </div>
+            <h2 class=" alert alert-primary text-danger py-2 text-center font-weight-bold text-monospace text-italic" id="res1" >  </h2>
+            <div class="row pt-5 ">
+            	<div class="col-sm-2"></div>
+                <div class="col-sm-3"><i class="shadow p-3 font-weight-bold" id="bol" @dblclick="wrong()" onclick="changevaluegpa()">GPA</i></div>
+                <div class="col-sm-3"><i class="shadow p-3  font-weight-bold" id="ita" @dblclick="wrong()" onclick="changevaluesgpa()">SGPA</i></div>
+                <div class="col-sm-3"><i class="shadow p-3  font-weight-bold" id="uli" @dblclick="wrong()" onclick="changevaluecgpa()">CGPA</i></div>
+            	<div class="col-sm-1"></div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+    function changevaluepercentage() {
+        var element = document.getElementById("tmarks").value;
+        var element1 = document.getElementById("omarks").value;
+        if (parseInt(element) < parseInt(element1)) {
+
+            var result = Math.round((parseInt(element) / parseInt(element1)) * 100);
+            document.getElementById("res").innerHTML = result + '%';
+        } else {
+            alert("please enter valid data");
+        }
+    };
+    function changevaluecgpa(){
+    	var cgpaelement = document.getElementById("permarks").value;
+    	var result =  parseInt(cgpaelement) / 9.5
+    	document.getElementById("res1").innerHTML = result.toFixed(2);
+    };
+    function changevaluegpa(){
+    	var gpaelement = document.getElementById("permarks").value;
+    	var result =  (parseInt(gpaelement) / 100) * 4
+    	document.getElementById("res1").innerHTML = result;
+    };
+    function changevaluesgpa(){
+    	var gpaelement = document.getElementById("permarks").value;
+    	var result =  (parseInt(gpaelement) / 10) + 0.75
+    	document.getElementById("res1").innerHTML = result;
+    };
+
+    </script>
+</body>
+
+</html>
